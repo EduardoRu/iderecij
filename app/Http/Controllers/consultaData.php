@@ -23,6 +23,61 @@ class consultaData extends Controller
         $claveAlumno = Clave_alumno::all();
         $resultado = Resultado::all();
 
+        $GIN = DB::table('encuestas')
+        ->select(
+            DB::raw('encuestas.nombre_institucion AS "nomEscuela"'),
+            DB::raw('SUM(resultados.salud_mental) AS "SM"'),
+            DB::raw('SUM(resultados.sistema_familiar) AS "SF"'),
+            DB::raw('SUM(resultados.presion_padres) AS "PP"'),
+            DB::raw('SUM(resultados.disp_sustancias_expect_consumo) AS "DSEC"'),
+            DB::raw('SUM(resultados.persepcion_riesgo->"$.total") AS "PR"'),
+            DB::raw('SUM(resultados.desempeno_escolar) AS "DE"'),
+            DB::raw('SUM(resultados.violencia) AS "VI"'),
+            DB::raw('SUM(resultados.riesgo_inicio_incremento_consumo) AS "RIIC"'),
+            DB::raw('SUM(resultados.consumo_sustancias->"$.total") AS "CS"'),
+            DB::raw('SUM(resultados.participacion_acciones_preventivas) AS "PAP"'),
+            DB::raw('SUM(resultados.IVG) AS "IVG"'),
+            DB::raw('encuestas.idencuesta AS "idEncuesta"')
+        );
+
+        $GGR = DB::table('encuestas')
+        ->select(
+            DB::raw('grupos.grado AS "grado"'),
+            DB::raw('grupos.grupo AS "grupo"'),
+            DB::raw('SUM(resultados.salud_mental) AS "SM"'),
+            DB::raw('SUM(resultados.sistema_familiar) AS "SF"'),
+            DB::raw('SUM(resultados.presion_padres) AS "PP"'),
+            DB::raw('SUM(resultados.disp_sustancias_expect_consumo) AS "DSEC"'),
+            DB::raw('SUM(resultados.persepcion_riesgo->"$.total") AS "PR"'),
+            DB::raw('SUM(resultados.desempeno_escolar) AS "DE"'),
+            DB::raw('SUM(resultados.violencia) AS "VI"'),
+            DB::raw('SUM(resultados.riesgo_inicio_incremento_consumo) AS "RIIC"'),
+            DB::raw('SUM(resultados.consumo_sustancias->"$.total") AS "CS"'),
+            DB::raw('SUM(resultados.participacion_acciones_preventivas) AS "PAP"'),
+            DB::raw('SUM(resultados.IVG) AS "IVG"'),
+            DB::raw('encuestas.idencuesta AS "idEncuesta"'),
+            DB::raw('grupos.idgrupos AS "idgrupo"')
+        );
+
+        $GAL = DB::table('encuestas')
+        ->select(
+            DB::raw('clave_alumnos.nombre_alumno AS "nomAlumno"'),
+            DB::raw('resultados.salud_mental AS "SM"'),
+            DB::raw('resultados.sistema_familiar AS "SF"'),
+            DB::raw('resultados.presion_padres AS "PP"'),
+            DB::raw('resultados.disp_sustancias_expect_consumo AS "DSEC"'),
+            DB::raw('resultados.persepcion_riesgo->"$.total" AS "PR"'),
+            DB::raw('resultados.desempeno_escolar AS "DE"'),
+            DB::raw('resultados.violencia AS "VI"'),
+            DB::raw('resultados.riesgo_inicio_incremento_consumo AS "RIIC"'),
+            DB::raw('resultados.consumo_sustancias->"$.total" AS "CS"'),
+            DB::raw('resultados.participacion_acciones_preventivas AS "PAP"'),
+            DB::raw('resultados.IVG AS "IVG"'),
+            DB::raw('clave_alumnos.idclave_alumno AS "idClaveAlumno"'),
+            DB::raw('grupos.idgrupos AS "idgrupo"'),
+            DB::raw('encuestas.idencuesta AS "idEncuesta"')
+        );
+
         return view('admin.consulta', compact('encuesta', 'grupos', 'claveAlumno', 'resultado'));
     }
 
