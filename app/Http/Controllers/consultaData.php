@@ -38,7 +38,14 @@ class consultaData extends Controller
             DB::raw('SUM(resultados.participacion_acciones_preventivas) AS "PAP"'),
             DB::raw('SUM(resultados.IVG) AS "IVG"'),
             DB::raw('encuestas.idencuesta AS "idEncuesta"')
-        );
+        )
+        ->join('grupos', 'encuestas.idencuesta', '=', 'grupos.idencuesta')
+        ->join('clave_alumnos', 'grupos.idgrupos', '=' ,'clave_alumnos.idgrupo')
+        ->join('resultados', 'clave_alumnos.idclave_alumno','=' ,'resultados.idclave_alumno')
+        ->groupBy('encuestas.idencuesta')
+        ->orderByDesc(DB::raw('MAX(resultados.IVG)'))
+        ->limit(6)
+        ->get();
 
         $GGR = DB::table('encuestas')
         ->select(
@@ -57,7 +64,14 @@ class consultaData extends Controller
             DB::raw('SUM(resultados.IVG) AS "IVG"'),
             DB::raw('encuestas.idencuesta AS "idEncuesta"'),
             DB::raw('grupos.idgrupos AS "idgrupo"')
-        );
+        )
+        ->join('grupos', 'encuestas.idencuesta', '=', 'grupos.idencuesta')
+        ->join('clave_alumnos', 'grupos.idgrupos', '=' ,'clave_alumnos.idgrupo')
+        ->join('resultados', 'clave_alumnos.idclave_alumno','=' ,'resultados.idclave_alumno')
+        ->groupBy('grupos.idgrupos')
+        ->orderByDesc(DB::raw('MAX(resultados.IVG)'))
+        ->limit(6)
+        ->get();
 
         $GAL = DB::table('encuestas')
         ->select(
@@ -76,9 +90,16 @@ class consultaData extends Controller
             DB::raw('clave_alumnos.idclave_alumno AS "idClaveAlumno"'),
             DB::raw('grupos.idgrupos AS "idgrupo"'),
             DB::raw('encuestas.idencuesta AS "idEncuesta"')
-        );
+        )
+        ->join('grupos', 'encuestas.idencuesta', '=', 'grupos.idencuesta')
+        ->join('clave_alumnos', 'grupos.idgrupos', '=' ,'clave_alumnos.idgrupo')
+        ->join('resultados', 'clave_alumnos.idclave_alumno','=' ,'resultados.idclave_alumno')
+        ->groupBy('clave_alumnos.idclave_alumno')
+        ->orderByDesc('resultados.IVG')
+        ->limit(6)
+        ->get();
 
-        return view('admin.consulta', compact('encuesta', 'grupos', 'claveAlumno', 'resultado'));
+        return view('admin.consulta', compact('encuesta', 'grupos', 'claveAlumno', 'resultado', 'GIN', 'GGR', 'GAL'));
     }
 
     /**

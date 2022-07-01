@@ -2,34 +2,54 @@
   FUNCIÓN PARA GENERA LAS GRAFICAS QUE SERÁN 6 GRAFICAS EN TOTAL EN FROMA DE PASTEL A PARTIR DE LOS DATOS
   QUÉ MÁS TUVIERON UN IVG
 */
-
-function genGrafica(datos) {
-
- google.charts.load('current', {'packages':['corechart']});
- google.charts.setOnLoadCallback(drawChart);
- function drawChart() {
-
-   var data = new google.visualization.DataTable();
-   data.addColumn('string', 'Topping');
-   data.addColumn('number', 'Slices');
-   data.addRows([
-     ['Mushrooms', 3],
-     ['Onions', 1],
-     ['Olives', 1],
-     ['Zucchini', 1],
-     ['Pepperoni', 2]
-   ]);
-
-   var options = {'title':'How Much Pizza I Ate Last Night',
-                  'width':400,
-                  'height':300};
-
-   var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
-   chart.draw(data, options);
-  }
+function genGraficaDatos(datos, x, tit) {
+  google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', 'Topping');
+      data.addColumn('number', 'Slices');
+      data.addRows([
+        ["Salud mental", parseInt(datos[x]['SM'])],
+        ["Sistema familiar", parseInt(datos[x]['SF'])],
+        ["Presion de pares", parseInt(datos[x]['PP'])],
+        ["Disponibiliad de sustancias", parseInt(datos[x]['DSEC'])],
+        ["Persepción de riesgo", parseInt(datos[x]['PR'])],
+        ["Desemepño escolar", parseInt(datos[x]['DE'])],
+        ["Violencia", parseInt(datos[x]['VI'])],
+        ["Riesgo de inicio o incremento de consumo", parseInt(datos[x]['RIIC'])],
+        ["Consumo de sustancias", parseInt(datos[x]['CS'])],
+        ["Participación en acciones preventivas", parseInt(datos[x]['PAP'])],
+      ]);
+      var options = {'title':tit,
+                      'width':350,
+                      'height':300};
+      var chart = new google.visualization.PieChart(document.getElementById('cart_'+x));
+      chart.draw(data, options);
+    }
 }
 
+function genGrafica(datos) {
+  var tit;
 
+ for (let x = 0; x < datos.length; x++) {
+
+  document.getElementById('fb').innerHTML += ' \
+      <div class="col-md-4"> \
+        <div id="cart_'+x+'"></div> \
+      </div> \
+  ';
+
+  if (datos[x]['idClaveAlumno'] && datos[x]['idEncuesta'] && datos[x]['idgrupo']) {
+    tit = "Alumno: " + datos[x]['nomAlumno'];
+  }else if(datos[x]['idEncuesta'] && datos[x]['idgrupo']){
+    tit = "Grupo: " + datos[x]['grado'] + "°" + datos[x]['grupo'];
+  }else if(datos[x]['idEncuesta']){
+    tit = "Escuela: " + datos[x]['nomEscuela'];
+  }
+  genGraficaDatos(datos,x,tit);
+ }
+}
 
 /*
   VALIDACIÓN DE FORMULARIO  
@@ -49,46 +69,34 @@ function valValues() {
 /*
   SELECCIONAR UN METODO DE BUSQUEDA 
 */
+
 function verINE(){
   if(document.getElementById('INE').checked==true){
-    console.log('Instituciones');
     document.getElementById('GRE').checked=false;
     document.getElementById('ALE').checked=false;
-
-    document.getElementById('fby').innerHTML = "";
-    document.getElementById('fby').innerHTML = "<h1>Filtrado por Instituciones</h1>"
+    genGrafica(GIN)
   }else{
-    document.getElementById('fby').innerHTML = "";
-    console.log('No Instituciones')
+    document.getElementById('fb').innerHTML = '';
   }
 }
 
 function verGRE(){
   if(document.getElementById('GRE').checked==true){
-    console.log('Grupos');
     document.getElementById('INE').checked=false;
     document.getElementById('ALE').checked=false;
-
-    document.getElementById('fby').innerHTML = "";
-    document.getElementById('fby').innerHTML = "<h1>Filtrado por Grupos</h1>"
-
+    genGrafica(GGR)
   }else{
-    document.getElementById('fby').innerHTML = "";
-    console.log('No Grupos')
+    document.getElementById('fb').innerHTML = '';
   }
 }
 
 function verALE(){
   if(document.getElementById('ALE').checked==true){
-    console.log('Alumnos');
     document.getElementById('INE').checked=false;
     document.getElementById('GRE').checked=false;
-
-    document.getElementById('fby').innerHTML = "";
-    document.getElementById('fby').innerHTML = "<h1>Filtrado por Alumnos</h1>"
+    genGrafica(GAL)
   }else{
-    document.getElementById('fby').innerHTML = "";
-    console.log('No Alumnos')
+    document.getElementById('fb').innerHTML = '';
   }
 }
 

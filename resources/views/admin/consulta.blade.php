@@ -141,7 +141,9 @@
                 </div>
             </div>
             <div class="card-body">
-                <div id="fby"></div>
+                <div class="" id="fby">
+                    <div class="row" id="fb"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -153,6 +155,11 @@
         var grupos = <?php echo json_encode($grupos);?>;
         var claveAlumnos = <?php echo json_encode($claveAlumno);?>;
         var resultados = <?php echo json_encode($resultado);?>;
+
+        var GIN = <?php echo json_encode($GIN);?>;
+        var GGR = <?php echo json_encode($GGR);?>;
+        var GAL = <?php echo json_encode($GAL);?>;
+
     </script>
     <script type="text/javascript" src="{{asset('js/explore.js')}}"></script>
 
