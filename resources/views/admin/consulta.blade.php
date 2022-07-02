@@ -74,7 +74,7 @@
                 <div class="card">
                     <div class="card-header">
                         <div style="text-align: center">
-                            Filtrar resultados generales por:
+                            Filtrar resultados generales (mayor riesgo) por:
                         </div>
                     </div>
                     <div class="card-body">
