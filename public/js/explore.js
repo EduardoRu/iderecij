@@ -2,6 +2,16 @@
   FUNCIÓN PARA GENERA LAS GRAFICAS QUE SERÁN 6 GRAFICAS EN TOTAL EN FROMA DE PASTEL A PARTIR DE LOS DATOS
   QUÉ MÁS TUVIERON UN IVG
 */
+console.log(GIN, GGR, GAL);
+
+function asigValue(d1,d2,d3) {
+    document.getElementById('GIN').value = d3;
+    document.getElementById('GGR').value = d2;
+    document.getElementById('GAL').value = d1;
+
+    console.log(document.getElementById('GIN').value)
+}
+
 function genGraficaDatos(datos, x, tit) {
   google.charts.load('current', {'packages':['corechart']});
     google.charts.setOnLoadCallback(drawChart);
@@ -23,7 +33,7 @@ function genGraficaDatos(datos, x, tit) {
       ]);
       var options = {'title':tit,
                       'width':350,
-                      'height':300};
+                      'height':250};
       var chart = new google.visualization.PieChart(document.getElementById('cart_'+x));
       chart.draw(data, options);
     }
@@ -34,18 +44,37 @@ function genGrafica(datos) {
 
  for (let x = 0; x < datos.length; x++) {
 
-  document.getElementById('fb').innerHTML += ' \
-      <div class="col-md-4"> \
-        <div id="cart_'+x+'"></div> \
-      </div> \
-  ';
-
   if (datos[x]['idClaveAlumno'] && datos[x]['idEncuesta'] && datos[x]['idgrupo']) {
     tit = "Alumno: " + datos[x]['nomAlumno'];
+    document.getElementById('fb').innerHTML += ' \
+    <div class="col-md-4"> \
+      <div> \
+        <div id="cart_'+x+'"></div> \
+      </div> \
+      <div class="d-grid gap-2"><button type="submit" onclick="asigValue('+datos[x]['idClaveAlumno']+','+datos[x]['idgrupo']+','+datos[x]['idEncuesta']+')" class="btn" style="background-color: #ed6f00; color:white"> INFORMAICÓN </button></div>\
+    </div>';
   }else if(datos[x]['idEncuesta'] && datos[x]['idgrupo']){
     tit = "Grupo: " + datos[x]['grado'] + "°" + datos[x]['grupo'];
+    document.getElementById('fb').innerHTML += ' \
+    <div class="col-md-4"> \
+    <form action="{{route("consultas.showGeneral")}}" method="GET">\
+      <div> \
+        <div id="cart_'+x+'"></div> \
+      </div> \
+      <div class="d-grid gap-2"><button type="submit" onclick="asigValue('+null+','+datos[x]['idgrupo']+','+datos[x]['idEncuesta']+')" class="btn" style="background-color: #ed6f00; color:white"> INFORMAICÓN </button></div>\
+    </form> \
+    </div>';
   }else if(datos[x]['idEncuesta']){
     tit = "Escuela: " + datos[x]['nomEscuela'];
+    document.getElementById('fb').innerHTML += ' \
+    <div class="col-md-4"> \
+    <form action="{{route("consultas.showGeneral")}}" method="GET">\
+      <div> \
+        <div id="cart_'+x+'"></div> \
+      </div> \
+      <div class="d-grid gap-2"><button type="submit" onclick="asigValue('+null+','+null+','+datos[x]['idEncuesta']+')" class="btn" style="background-color: #ed6f00; color:white"> INFORMAICÓN </button></div>\
+    </form> \
+    </div>';
   }
   genGraficaDatos(datos,x,tit);
  }
@@ -74,6 +103,7 @@ function verINE(){
   if(document.getElementById('INE').checked==true){
     document.getElementById('GRE').checked=false;
     document.getElementById('ALE').checked=false;
+    document.getElementById('fb').innerHTML = '';
     genGrafica(GIN)
   }else{
     document.getElementById('fb').innerHTML = '';
@@ -84,6 +114,7 @@ function verGRE(){
   if(document.getElementById('GRE').checked==true){
     document.getElementById('INE').checked=false;
     document.getElementById('ALE').checked=false;
+    document.getElementById('fb').innerHTML = '';
     genGrafica(GGR)
   }else{
     document.getElementById('fb').innerHTML = '';
@@ -94,6 +125,7 @@ function verALE(){
   if(document.getElementById('ALE').checked==true){
     document.getElementById('INE').checked=false;
     document.getElementById('GRE').checked=false;
+    document.getElementById('fb').innerHTML = '';
     genGrafica(GAL)
   }else{
     document.getElementById('fb').innerHTML = '';

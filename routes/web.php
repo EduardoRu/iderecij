@@ -73,6 +73,8 @@ use Illuminate\Support\Facades\Redirect;
 
     Route::get('/mostrarResultados', [consultaData::class, 'show'])->name('consultas.show');
 
+    Route::get('/mostrarResultadosGenerales', [consultaData::class, 'showGeneral'])->name('consultas.showGeneral');
+
     Route::get('genExcel', [consultaData::class, 'genExcel'])->name('consultas.excel');
 
     //Route::view('/consultas', 'admin.consulta')->middleware('auth')->name('consultas');

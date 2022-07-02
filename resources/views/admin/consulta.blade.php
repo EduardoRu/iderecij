@@ -4,7 +4,6 @@
 <input type="text" value="{{$encuesta}}" id="encuestas" hidden>
     <div class="container">
         <div class="row">
-
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header">
@@ -13,7 +12,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form action="{{route('consultas.show')}}" method="GET" onsubmit="return valValues()">
+                        <form action="{{route("consultas.show")}}" method="GET" onsubmit="return valValues()">
                             <div class="container">
                                 <div class="row">
                                     <div class="col-md-12">
@@ -141,9 +140,16 @@
                 </div>
             </div>
             <div class="card-body">
-                <div class="" id="fby">
-                    <div class="row" id="fb"></div>
-                </div>
+                <form action="{{route('consultas.showGeneral')}}" method="GET">
+                    <div id="datosGenerales">
+                        <input type="number" id="GIN" name="GIN" value="" hidden>
+                        <input type="number" id="GGR" name="GGR" value="" hidden>
+                        <input type="number" id="GAL" name="GAL" value="" hidden>
+                    </div>
+                    <div class="" id="fby">
+                        <div class="row" id="fb"></div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
