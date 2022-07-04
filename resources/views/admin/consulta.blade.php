@@ -4,7 +4,7 @@
 <input type="text" value="{{$encuesta}}" id="encuestas" hidden>
     <div class="container">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
                         <div style="text-align: center">
@@ -17,8 +17,18 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="row">
-                                            <div class="col-md-8">
+                                            <div class="col-md-9">
                                                 <h4>Instituciones</h4>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="row">
+                                                    <div class="col-md-10">
+                                                        <label for="INE">Buscar por instituciones:</label>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <input type="checkbox" class="form-check-input" id="INE" onclick="verINE()">
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                         <select name="INES" id="INES" onclick="getINES()" class="form-select form-select-sm" aria-label=".form-select-sm example">
@@ -35,8 +45,18 @@
                                 <div class="row" style="padding-top: 1%">
                                     <div class="col-md-12">
                                         <div class="row">
-                                            <div class="col-md-8">
+                                            <div class="col-md-9">
                                                 <h4>Grupos</h4>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="row">
+                                                    <div class="col-md-10">
+                                                        <label for="GRE">Buscar por grupos:</label>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <input type="checkbox" class="form-check-input" id="GRE" onclick="verGRE()">
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                         <select name="GRES" id="GRES" onclick="getGRES()" class="form-select form-select-sm" aria-label=".form-select-sm example">
@@ -49,8 +69,18 @@
                                 <div class="row" style="padding-top: 1%">
                                     <div class="col-md-12">
                                         <div class="row">
-                                            <div class="col-md-8">
+                                            <div class="col-md-9">
                                                 <h4>Alumnos</h4>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="row">
+                                                    <div class="col-md-10">
+                                                        <label for="ALE">Buscar por alumnos:</label>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <input type="checkbox" class="form-check-input" id="ALE" onclick="verALE()">
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                         <select name="ALES" id="ALES" class="form-select form-select-sm" aria-label=".form-select-sm example">
@@ -66,65 +96,6 @@
                                 </button>
                             </div>
                         </form>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header">
-                        <div style="text-align: center">
-                            Filtrar resultados generales (mayor riesgo) por:
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="row" style="text-align: center">
-                                <h4>Instituciones</h4>
-                            </div>
-                            <div class="row" >
-                                <div class="col-md-3">
-                                </div>
-                                <div class="col-md-5" >
-                                    <label for="INE">Buscar por instituciones:</label>
-                                </div>
-                                <div class="col-md-4">
-                                    <input type="checkbox" class="form-check-input" id="INE" onclick="verINE()">
-                                </div>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="row" style="text-align: center">
-                                <h4>Grupos</h4>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-3">
-                                </div>
-                                <div class="col-md-5">
-                                    <label for="GRE">Buscar por grupos:</label>
-                                </div>
-                                <div class="col-md-4">
-                                    <input type="checkbox" class="form-check-input" id="GRE" onclick="verGRE()">
-                                </div>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="row" style="text-align: center">
-                                <h4>Alumnos</h4>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-3">
-                                </div>
-                                <div class="col-md-5">
-                                    <label for="ALE">Buscar por alumnos:</label>
-                                </div>
-                                <div class="col-md-4">
-                                    <input type="checkbox" class="form-check-input" id="ALE" onclick="verALE()"> 
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>

@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 
 class consultaData extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -343,13 +344,5 @@ class consultaData extends Controller
         return view('admin.query.mostrarData', compact('DATOS'));
     }
 
-     /**
-     * Display the specified resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function genExcel(Request $request)
-    {
-        return [$request->input('GIN'), $request->input('GGR'), $request->input('GAL')];
-    }
+     
 }

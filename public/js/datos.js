@@ -1,3 +1,5 @@
+console.log(datos);
+
 if(datos.length != 0){
   /* CREACIÓN DE UNA LISTA LIMPIA CON LOS DATOS ENVIADOS DE LA BASE DE DATOS*/
 var newDatos = [];
@@ -15,8 +17,6 @@ for (let i=0;i<newDatos.length;i++) {
     newDatosDos.push(newDatos[i]);
   }
 }
-
-console.log(newDatosDos)
 
 /* CONOCER LA CATEGORÍA CON MÁS PUNTOS DEL PRIMER ELMENTO */
 function knowCate(datos) {

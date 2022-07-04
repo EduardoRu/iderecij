@@ -8,6 +8,7 @@ use App\Http\Controllers\testController;
 use App\Http\Controllers\saveEncuesta;
 use App\Http\Controllers\encuestas;
 use App\Http\Controllers\genpdf;
+use App\Http\Controllers\genExcel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -75,7 +76,7 @@ use Illuminate\Support\Facades\Redirect;
 
     Route::get('/mostrarResultadosGenerales', [consultaData::class, 'showGeneral'])->name('consultas.showGeneral');
 
-    Route::get('genExcel', [consultaData::class, 'genExcel'])->name('consultas.excel');
+    Route::get('/genExcel', [genExcel::class, 'genExcelD'])->name('consultas.excel');
 
     //Route::view('/consultas', 'admin.consulta')->middleware('auth')->name('consultas');
 
