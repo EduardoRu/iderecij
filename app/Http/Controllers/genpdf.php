@@ -57,6 +57,23 @@ class genpdf extends Controller
     
                     $x++;
                 }
+            }else if($VCA != null){
+                while($TA > $x){
+
+                    $CA = Clave_alumno::find($VCA[$x]['idclave_alumno']);
+    
+                    $clave = DB::select('
+                    SELECT UCASE(CONCAT(LEFT(?,2), RIGHT(?,2),?,?,"'.$x.'_",LEFT(?,4))) AS CLAVE FROM encuestas INNER JOIN grupos ON grupos.idencuesta = encuestas.idencuesta WHERE grupos.idgrupos = ? LIMIT 1',
+                    [$encuesta->nombre_institucion, $encuesta->nombre_institucion, $GR, $GU, $encuesta->fecha_final, $ID]);
+                    $clave = json_decode(json_encode($clave), true);
+                    $clave = $clave[0]['CLAVE'];
+    
+                    $CA->clave = $clave;
+    
+                    $CA->save();
+    
+                    $x++;
+                }
             }
         }
 
@@ -65,4 +82,5 @@ class genpdf extends Controller
         $pdf = PDF::loadView('admin.test.genClaves', compact('claves'));
         return $pdf->download($nomInstitucion.'_claves.pdf');
     }
+
 }
