@@ -1,5 +1,3 @@
-console.log(datos);
-
 if(datos.length != 0){
   /* CREACIÓN DE UNA LISTA LIMPIA CON LOS DATOS ENVIADOS DE LA BASE DE DATOS*/
 var newDatos = [];

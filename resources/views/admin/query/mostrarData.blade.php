@@ -36,9 +36,15 @@
                     <div style="padding-top: 1%">Resultados</div>
                 </div>
                 <div class="col-md-2">
-                    <a href="{{route('consultas.excel')}}" class="btn btn-success" style="text-decoration: none">
-                        Exportar a excel
-                    </a>
+                    <form action="{{route('consultas.excel')}}" method="GET">
+                        <div>
+                            <input type="number" id="IDA" name="IDA" value="{{$IDALUMNO}}" hidden>
+                            <input type="number" id="IDG" name="IDG" value="{{$IDGRUPO}}" hidden>
+                            <input type="number" id="IDE" name="IDE" value="{{$IDESCUELA}}" hidden>
+                        </div>
+                        <button type="submit" class="btn btn-success"> Exportar a excel </button>
+                    </form>
+                    
                 </div>
             </div>
         </div>
@@ -59,7 +65,6 @@
 <script type="text/javascript" src="{{asset('js/loader.js')}}"></script>
 <script>
     var datos = <?php echo json_encode($DATOS);?>;
-    
 </script>
 <script type="text/javascript" src="{{asset('js/datos.js')}}"></script>
 @endsection

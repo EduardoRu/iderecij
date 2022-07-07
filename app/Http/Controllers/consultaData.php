@@ -148,12 +148,17 @@ class consultaData extends Controller
                 ->where('clave_alumnos.idclave_alumno', $request->input('ALES'))
                 ->get();
 
-                return view('admin.query.mostrarData', compact('DATOS'));
+                $IDALUMNO = $request->input('ALES');
+                $IDGRUPO = $request->input('GRES');
+                $IDESCUELA = $request->input('INES');
+
+                return view('admin.query.mostrarData', compact('DATOS', 'IDALUMNO', 'IDGRUPO', 'IDESCUELA'));
 
             } else{
 
                 $DATOS = DB::table('clave_alumnos')
                 ->select(
+                    DB::raw('grupos.idgrupos AS "idGrupo"'),
                     DB::raw('clave_alumnos.idclave_alumno AS "idAlumno"'),
                     DB::raw('clave_alumnos.nombre_alumno AS "Nombre"'),
                     DB::raw('clave_alumnos.sexo AS "Sexo"'),
@@ -185,7 +190,12 @@ class consultaData extends Controller
                 ->groupBy('clave_alumnos.idclave_alumno')
                 ->get();
 
-                return view('admin.query.mostrarData', compact('DATOS'));
+                $IDALUMNO = "0";
+                $IDGRUPO = $request->input('GRES');
+                $IDESCUELA = $request->input('INES');
+
+
+                return view('admin.query.mostrarData', compact('DATOS', 'IDALUMNO', 'IDGRUPO', 'IDESCUELA'));
             }
         }else{
 
@@ -219,7 +229,11 @@ class consultaData extends Controller
             ->groupBy('grupos.idgrupos')
             ->get();
 
-            return view('admin.query.mostrarData', compact('DATOS'));
+            $IDALUMNO = "0";
+            $IDGRUPO = "0";
+            $IDESCUELA = $request->input('INES');
+
+            return view('admin.query.mostrarData', compact('DATOS', 'IDALUMNO', 'IDGRUPO', 'IDESCUELA'));
         }
     }
 
@@ -267,7 +281,12 @@ class consultaData extends Controller
                 ->where('clave_alumnos.idclave_alumno', $request->input('GAL'))
                 ->get();
 
-                return view('admin.query.mostrarData', compact('DATOS'));
+                $IDALUMNO = $request->input('GAL');
+                $IDGRUPO = $request->input('GGR');
+                $IDESCUELA = $request->input('GIN');
+
+
+                return view('admin.query.mostrarData', compact('DATOS', 'IDALUMNO', 'IDGRUPO', 'IDESCUELA'));
 
             } else{
 
@@ -304,7 +323,11 @@ class consultaData extends Controller
                 ->groupBy('clave_alumnos.idclave_alumno')
                 ->get();
 
-                return view('admin.query.mostrarData', compact('DATOS'));
+                $IDALUMNO = "0";
+                $IDGRUPO = $request->input('GGR');
+                $IDESCUELA = $request->input('GIN');
+
+                return view('admin.query.mostrarData', compact('DATOS', 'IDALUMNO', 'IDGRUPO', 'IDESCUELA'));
             }
         }else{
 
@@ -338,11 +361,11 @@ class consultaData extends Controller
             ->groupBy('grupos.idgrupos')
             ->get();
 
-            return view('admin.query.mostrarData', compact('DATOS'));
+            $IDALUMNO = "0";
+            $IDGRUPO = "0";
+            $IDESCUELA = $request->input('GIN');
+
+            return view('admin.query.mostrarData', compact('DATOS', 'IDALUMNO', 'IDGRUPO', 'IDESCUELA'));
         }
-
-        return view('admin.query.mostrarData', compact('DATOS'));
-    }
-
-     
+    }     
 }

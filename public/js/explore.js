@@ -2,7 +2,6 @@
   FUNCIÓN PARA GENERA LAS GRAFICAS QUE SERÁN 6 GRAFICAS EN TOTAL EN FROMA DE PASTEL A PARTIR DE LOS DATOS
   QUÉ MÁS TUVIERON UN IVG
 */
-console.log(GIN, GGR, GAL);
 
 function asigValue(d1,d2,d3) {
     document.getElementById('GIN').value = d3;

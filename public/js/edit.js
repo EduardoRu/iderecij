@@ -102,7 +102,7 @@ function valGroup(){
 
 
 function borrarEncuesta() {
-    var con = confirm('¡¡IMPORTANTE!! \n Al eliminar la encuesta los grupos y claves serán eliminados también \n ¿Está seguro de eleminiar esté registro?');
+    var con = confirm('¡¡IMPORTANTE!! \n Al eliminar la encuesta los grupos y claves serán eliminados también \n ¿Está seguro de eleminar esté registro?');
 
     if(con == false){
         return false;
