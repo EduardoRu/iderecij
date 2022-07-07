@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Encuest;
 use App\Models\Grupo;
+use Illuminate\Pagination\Paginator;
 use App\Models\Clave_alumno;
 
 class encuestas extends Controller

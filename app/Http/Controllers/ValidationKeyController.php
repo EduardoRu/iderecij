@@ -16,8 +16,6 @@ class ValidationKeyController extends Controller
      */
     public function index(Request $request)
     {
-        //$clavedos = DB::select("SELECT * FROM clave_alumnos WHERE clave = '$request->clave'");
-
         $clave = Clave_alumno::where('clave', $request->clave)->first();
 
         if($clave != null){
