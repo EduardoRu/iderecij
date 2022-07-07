@@ -146,7 +146,8 @@ class Consultas implements FromQuery, WithHeadings, WithColumnWidths, ShouldAuto
             ->join('clave_alumnos', 'grupos.idgrupos', '=', 'clave_alumnos.idgrupo')
             ->join('encuestas', 'grupos.idencuesta', '=', 'encuestas.idencuesta')
             ->join('resultados', 'clave_alumnos.idclave_alumno', '=', 'resultados.idclave_alumno')
-            ->where('grupos.idgrupos', $this->idGrupo);
+            ->where('grupos.idgrupos', $this->idGrupo)
+            ->orderByDesc('resultados.IVG');
 
         }else if($this->idEscuela != 0){
             return Encuest::query()->where('idencuesta', $this->idEscuela);

@@ -23,7 +23,7 @@ class encuestas extends Controller
 
     public function index()
     {
-        $encuestas = Encuest::orderBy('idencuesta', 'DESC')->simplePaginate(4);
+        $encuestas = Encuest::orderBy('idencuesta', 'DESC')->paginate(4);
         //$encuestas = DB::select('select * from encuestas;');
 
         return view('admin.pencuesta', compact('encuestas'));
@@ -93,17 +93,6 @@ class encuestas extends Controller
         $grupos = Grupo::where('idencuesta', $id)->get();
 
         return view('admin.test.editart', compact('encuesta', 'grupos'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
     }
 
     /**

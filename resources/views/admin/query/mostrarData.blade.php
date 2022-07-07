@@ -35,6 +35,7 @@
                 <div class="col-md-10">
                     <div style="padding-top: 1%">Resultados</div>
                 </div>
+                @if ($IDALUMNO !="0" && $IDGRUPO !="0" && $IDESCUELA !="0")
                 <div class="col-md-2">
                     <form action="{{route('consultas.excel')}}" method="GET">
                         <div>
@@ -44,8 +45,22 @@
                         </div>
                         <button type="submit" class="btn btn-success"> Exportar a excel </button>
                     </form>
-                    
                 </div>
+                @elseif ($IDGRUPO !="0" && $IDESCUELA !="0")
+                <div class="col-md-2">
+                    <form action="{{route('consultas.excel')}}" method="GET">
+                        <div>
+                            <input type="number" id="IDA" name="IDA" value="{{$IDALUMNO}}" hidden>
+                            <input type="number" id="IDG" name="IDG" value="{{$IDGRUPO}}" hidden>
+                            <input type="number" id="IDE" name="IDE" value="{{$IDESCUELA}}" hidden>
+                        </div>
+                        <button type="submit" class="btn btn-success"> Exportar a excel </button>
+                    </form>
+                </div>
+                @else
+                    
+                @endif
+                
             </div>
         </div>
         <div class="card-body">

@@ -79,7 +79,9 @@
         </div>
         @endforeach
         <br>
-        {{$encuestas->links()}}
+        <center>
+            {{$encuestas->links()}}
+        </center>
     </div>
 </div>
 @endsection

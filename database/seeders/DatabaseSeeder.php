@@ -21,6 +21,18 @@ class DatabaseSeeder extends Seeder
             'name_admin' => 'Alfredo Alvarez Haro',
             'email' => 'AAlvarez@gmail.com',
             'password' => bcrypt('CIJAAH1234')
+        ],[
+            'name_admin' => 'Alfredo Alvarez Haro',
+            'email' => 'AAlvarez@gmail.com',
+            'password' => bcrypt('CIJAAH1234')
+        ],[
+            'name_admin' => 'Alfredo Alvarez Haro',
+            'email' => 'AAlvarez@gmail.com',
+            'password' => bcrypt('CIJAAH1234')
+        ],[
+            'name_admin' => 'Alfredo Alvarez Haro',
+            'email' => 'AAlvarez@gmail.com',
+            'password' => bcrypt('CIJAAH1234')
         ]);
     }
 }

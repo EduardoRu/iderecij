@@ -11,6 +11,11 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class genExcel extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     /**
      * Display the specified resource.
      *

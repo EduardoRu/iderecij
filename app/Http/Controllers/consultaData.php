@@ -11,6 +11,10 @@ use Illuminate\Support\Facades\DB;
 
 class consultaData extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     /**
      * Display a listing of the resource.
@@ -44,7 +48,7 @@ class consultaData extends Controller
         ->join('clave_alumnos', 'grupos.idgrupos', '=' ,'clave_alumnos.idgrupo')
         ->join('resultados', 'clave_alumnos.idclave_alumno','=' ,'resultados.idclave_alumno')
         ->groupBy('encuestas.idencuesta')
-        ->orderByDesc(DB::raw('MAX(resultados.IVG)'))
+        ->orderByDesc(DB::raw('SUM(resultados.IVG)'))
         ->limit(6)
         ->get();
 
@@ -70,7 +74,7 @@ class consultaData extends Controller
         ->join('clave_alumnos', 'grupos.idgrupos', '=' ,'clave_alumnos.idgrupo')
         ->join('resultados', 'clave_alumnos.idclave_alumno','=' ,'resultados.idclave_alumno')
         ->groupBy('grupos.idgrupos')
-        ->orderByDesc(DB::raw('MAX(resultados.IVG)'))
+        ->orderByDesc(DB::raw('SUM(resultados.IVG)'))
         ->limit(6)
         ->get();
 
@@ -188,6 +192,7 @@ class consultaData extends Controller
                 ->join('encuestas','grupos.idencuesta','=','encuestas.idencuesta')
                 ->where('grupos.idgrupos',  $request->input('GRES'))
                 ->groupBy('clave_alumnos.idclave_alumno')
+                ->orderByDesc('resultados.IVG')
                 ->get();
 
                 $IDALUMNO = "0";
@@ -227,6 +232,7 @@ class consultaData extends Controller
             ->join('encuestas','grupos.idencuesta','=','encuestas.idencuesta')
             ->where('encuestas.idencuesta', $request->input('INES'))
             ->groupBy('grupos.idgrupos')
+            ->orderByDesc('resultados.IVG')
             ->get();
 
             $IDALUMNO = "0";
@@ -321,6 +327,7 @@ class consultaData extends Controller
                 ->join('encuestas','grupos.idencuesta','=','encuestas.idencuesta')
                 ->where('grupos.idgrupos',  $request->input('GGR'))
                 ->groupBy('clave_alumnos.idclave_alumno')
+                ->orderByDesc('resultados.IVG')
                 ->get();
 
                 $IDALUMNO = "0";
@@ -359,6 +366,7 @@ class consultaData extends Controller
             ->join('encuestas','grupos.idencuesta','=','encuestas.idencuesta')
             ->where('encuestas.idencuesta', $request->input('GIN'))
             ->groupBy('grupos.idgrupos')
+            ->orderByDesc('resultados.IVG')
             ->get();
 
             $IDALUMNO = "0";

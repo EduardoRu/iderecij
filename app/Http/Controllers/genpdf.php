@@ -65,10 +65,4 @@ class genpdf extends Controller
         $pdf = PDF::loadView('admin.test.genClaves', compact('claves'));
         return $pdf->download($nomInstitucion.'_claves.pdf');
     }
-
-    public function show($id)
-    {
-
-    }
-
 }
