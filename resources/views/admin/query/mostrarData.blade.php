@@ -33,7 +33,15 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-md-10">
-                    <div style="padding-top: 1%">Resultados</div>
+                    <div style="padding-top: 1%">
+                        Resultados 
+                        @if ($IDALUMNO == "0" && $IDGRUPO == "0")
+                        || Seleccione el grado: 
+                        <select name="SG" id="SG" onclick="getGrados()">
+                            <option value=""></option>
+                        </select>
+                        @endif
+                    </div>
                 </div>
                 @if ($IDALUMNO !="0" && $IDGRUPO !="0" && $IDESCUELA !="0")
                 <div class="col-md-2">
@@ -58,7 +66,17 @@
                     </form>
                 </div>
                 @else
+                <div class="col-md-2">
+                    <form action="{{route('consultas.excel')}}" method="GET">
+                        <div>
+                            <input type="number" id="IDA" name="IDA" value="{{$IDALUMNO}}" hidden>
+                            <input type="number" id="IDG" name="IDG" value="{{$IDGRUPO}}" hidden>
+                            <input type="number" id="IDE" name="IDE" value="{{$IDESCUELA}}" hidden>
+                        </div>
+                        <button type="submit" class="btn btn-success"> Exportar a excel </button>
+                    </form>
                     
+                </div>
                 @endif
                 
             </div>
@@ -81,5 +99,11 @@
 <script>
     var datos = <?php echo json_encode($DATOS);?>;
 </script>
-<script type="text/javascript" src="{{asset('js/datos.js')}}"></script>
+@if ($IDALUMNO !="0" && $IDGRUPO !="0" && $IDESCUELA !="0")
+    <script type="text/javascript" src="{{asset('js/datos.js')}}"></script>
+@elseif ($IDGRUPO !="0" && $IDESCUELA !="0")
+    <script type="text/javascript" src="{{asset('js/datos.js')}}"></script>
+@else
+    <script type="text/javascript" src="{{asset('js/datosINS.js')}}"></script>
+@endif
 @endsection
