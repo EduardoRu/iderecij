@@ -49,7 +49,7 @@ class consultaData extends Controller
         ->join('resultados', 'clave_alumnos.idclave_alumno','=' ,'resultados.idclave_alumno')
         ->groupBy('encuestas.idencuesta')
         ->orderByDesc(DB::raw('SUM(resultados.IVG)'))
-        ->limit(6)
+        ->limit(12)
         ->get();
 
         $GGR = DB::table('encuestas')
@@ -75,7 +75,7 @@ class consultaData extends Controller
         ->join('resultados', 'clave_alumnos.idclave_alumno','=' ,'resultados.idclave_alumno')
         ->groupBy('grupos.idgrupos')
         ->orderByDesc(DB::raw('SUM(resultados.IVG)'))
-        ->limit(6)
+        ->limit(12)
         ->get();
 
         $GAL = DB::table('encuestas')
@@ -101,7 +101,7 @@ class consultaData extends Controller
         ->join('resultados', 'clave_alumnos.idclave_alumno','=' ,'resultados.idclave_alumno')
         ->groupBy('clave_alumnos.idclave_alumno')
         ->orderByDesc('resultados.IVG')
-        ->limit(6)
+        ->limit(12)
         ->get();
 
         return view('admin.consulta', compact('encuesta', 'grupos', 'claveAlumno', 'resultado', 'GIN', 'GGR', 'GAL'));
