@@ -85,4 +85,4 @@ use Illuminate\Support\Facades\Redirect;
 */
 
 Route::get('/home', [HomeController::class, 'index'])->middleware('auth')->name('home');
-Auth::routes();
+//Auth::routes();
