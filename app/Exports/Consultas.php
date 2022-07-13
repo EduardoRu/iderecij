@@ -150,6 +150,8 @@ class Consultas implements FromQuery, WithHeadings, WithColumnWidths, ShouldAuto
             ];
         }else if($this->idEscuela != 0){
             return [
+                'A' => 7,
+                'B' => 7,
                 'D' => 7,
                 'E' => 10,
                 'F' => 10,
@@ -243,7 +245,7 @@ class Consultas implements FromQuery, WithHeadings, WithColumnWidths, ShouldAuto
             ->orderByDesc('resultados.IVG');
 
         }else if($this->idEscuela != 0){
-            return Encuest::query()
+            return Grupo::query()
             ->select(
                 DB::raw('grupos.grado'),
                 DB::raw('grupos.grupo'),
@@ -265,10 +267,11 @@ class Consultas implements FromQuery, WithHeadings, WithColumnWidths, ShouldAuto
                 DB::raw('SUM(resultados.consumo_sustancias->"$.Otras_drogas")'),
                 DB::raw('SUM(resultados.participacion_acciones_preventivas)'),
                 DB::raw('SUM(resultados.IVG)'))
-            ->join('grupos', 'grupos.idencuesta', '=', 'encuestas.idencuesta')
             ->join('clave_alumnos', 'grupos.idgrupos', '=', 'clave_alumnos.idgrupo')
-            ->join('resultados', 'clave_alumnos.idclave_alumno', '=', 'resultados.idclave_alumno')           
-            ->where('encuestas.idencuesta', $this->idEscuela)
+            ->join('encuestas', 'grupos.idencuesta', '=', 'encuestas.idencuesta')
+            ->join('resultados', 'clave_alumnos.idclave_alumno', '=', 'resultados.idclave_alumno')          
+            ->where('grupos.idencuesta', $this->idEscuela)
+            ->groupBy('grupos.idgrupos')
             ->orderByDesc('resultados.IVG');
         }
     }
