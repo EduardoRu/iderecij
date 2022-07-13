@@ -28,54 +28,147 @@ class Consultas implements FromQuery, WithHeadings, WithColumnWidths, ShouldAuto
 
     public function headings(): array
     {
-        return [
-            'Nombre del alumno',
-            'Genero',
-            'Grado',
-            'Grupo',
-            'Institución',
-            'Salud mental',
-            'Sistema familiar',
-            'Presión de pares',
-            'Disponibiliad de sustancias y espectativas sobre el consumo',
-            'Persepción de riesgo (Tabaco)',
-            'Persepción de riesgo (Alcohol)',
-            'Persepción de riesgo (Otras drogas)',
-            'Persepción de riesgo (Total)',
-            'Desempeño escolar',
-            'Violencia',
-            'Riesgo de inicio o incremento de consumo',
-            'Consumo de sustancias (Tabaco)',
-            'Consumo de sustancias (Alcohol)',
-            'Consumo de sustancias (Otras drogas)',
-            'Consumo de sustancias (Total)',
-            'Participación en acciones preventivas',
-            'IVG'
-        ];
+        if ($this->idAlumno != 0 and $this->idGrupo != 0 and $this->idEscuela != 0) {
+            return [
+                'Nombre del alumno',
+                'Genero',
+                'Grado',
+                'Grupo',
+                'Institución',
+                'Salud mental',
+                'Sistema familiar',
+                'Presión de pares',
+                'Disponibiliad de sustancias y espectativas sobre el consumo',
+                'Persepción de riesgo (Tabaco)',
+                'Persepción de riesgo (Alcohol)',
+                'Persepción de riesgo (Otras drogas)',
+                'Persepción de riesgo (Total)',
+                'Desempeño escolar',
+                'Violencia',
+                'Riesgo de inicio o incremento de consumo',
+                'Consumo de sustancias (Tabaco)',
+                'Consumo de sustancias (Alcohol)',
+                'Consumo de sustancias (Otras drogas)',
+                'Consumo de sustancias (Total)',
+                'Participación en acciones preventivas',
+                'IVG'
+            ];
+        }else if($this->idGrupo != 0 and $this->idEscuela != 0){
+            return [
+                'Nombre del alumno',
+                'Genero',
+                'Grado',
+                'Grupo',
+                'Institución',
+                'Salud mental',
+                'Sistema familiar',
+                'Presión de pares',
+                'Disponibiliad de sustancias y espectativas sobre el consumo',
+                'Persepción de riesgo (Tabaco)',
+                'Persepción de riesgo (Alcohol)',
+                'Persepción de riesgo (Otras drogas)',
+                'Persepción de riesgo (Total)',
+                'Desempeño escolar',
+                'Violencia',
+                'Riesgo de inicio o incremento de consumo',
+                'Consumo de sustancias (Tabaco)',
+                'Consumo de sustancias (Alcohol)',
+                'Consumo de sustancias (Otras drogas)',
+                'Consumo de sustancias (Total)',
+                'Participación en acciones preventivas',
+                'IVG'
+            ];
+        }else if($this->idEscuela != 0){
+            return [
+                'Grado',
+                'Grupo',
+                'Institución',
+                'Salud mental',
+                'Sistema familiar',
+                'Presión de pares',
+                'Disponibiliad de sustancias y espectativas sobre el consumo',
+                'Persepción de riesgo (Tabaco)',
+                'Persepción de riesgo (Alcohol)',
+                'Persepción de riesgo (Otras drogas)',
+                'Persepción de riesgo (Total)',
+                'Desempeño escolar',
+                'Violencia',
+                'Riesgo de inicio o incremento de consumo',
+                'Consumo de sustancias (Tabaco)',
+                'Consumo de sustancias (Alcohol)',
+                'Consumo de sustancias (Otras drogas)',
+                'Consumo de sustancias (Total)',
+                'Participación en acciones preventivas',
+                'IVG'
+            ];
+        }
     }
 
     public function columnWidths(): array
     {
-        return [
-            'C' => 7,
-            'D' => 7,
-            'F' => 10,
-            'G' => 10,
-            'H' => 10,
-            'I' => 31,
-            'J' => 15,
-            'K' => 15,
-            'L' => 20,
-            'M' => 15,
-            'N' => 10,
-            'O' => 10,
-            'P' => 25,
-            'Q' => 20,
-            'R' => 20,
-            'S' => 20,
-            'T' => 20,
-            'U' => 20
-        ];
+        if ($this->idAlumno != 0 and $this->idGrupo != 0 and $this->idEscuela != 0) {
+            return [
+                'C' => 7,
+                'D' => 7,
+                'F' => 10,
+                'G' => 10,
+                'H' => 10,
+                'I' => 31,
+                'J' => 15,
+                'K' => 15,
+                'L' => 20,
+                'M' => 15,
+                'N' => 10,
+                'O' => 10,
+                'P' => 25,
+                'Q' => 20,
+                'R' => 20,
+                'S' => 20,
+                'T' => 20,
+                'U' => 20
+            ];
+        }else if($this->idGrupo != 0 and $this->idEscuela != 0){
+            return [
+                'C' => 7,
+                'D' => 7,
+                'F' => 10,
+                'G' => 10,
+                'H' => 10,
+                'I' => 31,
+                'J' => 15,
+                'K' => 15,
+                'L' => 20,
+                'M' => 15,
+                'N' => 10,
+                'O' => 10,
+                'P' => 25,
+                'Q' => 20,
+                'R' => 20,
+                'S' => 20,
+                'T' => 20,
+                'U' => 20
+            ];
+        }else if($this->idEscuela != 0){
+            return [
+                'D' => 7,
+                'E' => 10,
+                'F' => 10,
+                'G' => 31,
+                'H' => 15,
+                'I' => 15,
+                'J' => 20,
+                'K' => 15,
+                'L' => 10,
+                'M' => 10,
+                'N' => 25,
+                'O' => 20,
+                'P' => 20,
+                'Q' => 20,
+                'R' => 20,
+                'S' => 20,
+                'T' => 20,
+            ];
+        }
     }
 
     public function styles(Worksheet $sheet)
@@ -150,7 +243,33 @@ class Consultas implements FromQuery, WithHeadings, WithColumnWidths, ShouldAuto
             ->orderByDesc('resultados.IVG');
 
         }else if($this->idEscuela != 0){
-            return Encuest::query()->where('idencuesta', $this->idEscuela);
+            return Encuest::query()
+            ->select(
+                DB::raw('grupos.grado'),
+                DB::raw('grupos.grupo'),
+                DB::raw('encuestas.nombre_institucion'),
+                DB::raw('SUM(resultados.salud_mental) '), 
+                DB::raw('SUM(resultados.sistema_familiar) '), 
+                DB::raw('SUM(resultados.presion_padres)'), 
+                DB::raw('SUM(resultados.disp_sustancias_expect_consumo)'), 
+                DB::raw('SUM(resultados.persepcion_riesgo->"$.total")'),
+                DB::raw('SUM(resultados.persepcion_riesgo->"$.Tabaco") '), 
+                DB::raw('SUM(resultados.persepcion_riesgo->"$.Alcohol") '), 
+                DB::raw('SUM(resultados.persepcion_riesgo->"$.Otras_drogas") '),
+                DB::raw('SUM(resultados.desempeno_escolar) '), 
+                DB::raw('SUM(resultados.violencia) '), 
+                DB::raw('SUM(resultados.riesgo_inicio_incremento_consumo)'),
+                DB::raw('SUM(resultados.consumo_sustancias->"$.total")'),
+                DB::raw('SUM(resultados.consumo_sustancias->"$.Tabaco")'),
+                DB::raw('SUM(resultados.consumo_sustancias->"$.Alcohol")'),
+                DB::raw('SUM(resultados.consumo_sustancias->"$.Otras_drogas")'),
+                DB::raw('SUM(resultados.participacion_acciones_preventivas)'),
+                DB::raw('SUM(resultados.IVG)'))
+            ->join('grupos', 'grupos.idencuesta', '=', 'encuestas.idencuesta')
+            ->join('clave_alumnos', 'grupos.idgrupos', '=', 'clave_alumnos.idgrupo')
+            ->join('resultados', 'clave_alumnos.idclave_alumno', '=', 'resultados.idclave_alumno')           
+            ->where('encuestas.idencuesta', $this->idEscuela)
+            ->orderByDesc('resultados.IVG');
         }
     }
 }
