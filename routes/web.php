@@ -9,8 +9,7 @@ use App\Http\Controllers\saveEncuesta;
 use App\Http\Controllers\encuestas;
 use App\Http\Controllers\genpdf;
 use App\Http\Controllers\genExcel;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Auth;
 
 
 /*
@@ -86,4 +85,4 @@ use Illuminate\Support\Facades\Redirect;
 
 Route::get('/home', [HomeController::class, 'index'])->middleware('auth')->name('home');
 
-//Auth::routes();
+Auth::routes();
