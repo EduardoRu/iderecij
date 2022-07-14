@@ -19,11 +19,11 @@ return new class extends Migration
             $table->integer('sistema_familiar');
             $table->integer('presion_padres');
             $table->integer('disp_sustancias_expect_consumo');
-            $table->json('persepcion_riesgo');
+            $table->jsonb('persepcion_riesgo');
             $table->integer('desempeno_escolar');
             $table->integer('violencia');
             $table->integer('riesgo_inicio_incremento_consumo');
-            $table->json('consumo_sustancias');
+            $table->jsonb('consumo_sustancias');
             $table->integer('participacion_acciones_preventivas');
             $table->integer('IVG')->nullable();
             $table->foreignId('idclave_alumno')
