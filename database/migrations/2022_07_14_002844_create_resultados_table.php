@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -19,11 +20,9 @@ return new class extends Migration
             $table->integer('sistema_familiar');
             $table->integer('presion_padres');
             $table->integer('disp_sustancias_expect_consumo');
-            $table->jsonb('persepcion_riesgo');
             $table->integer('desempeno_escolar');
             $table->integer('violencia');
             $table->integer('riesgo_inicio_incremento_consumo');
-            $table->jsonb('consumo_sustancias');
             $table->integer('participacion_acciones_preventivas');
             $table->integer('IVG')->nullable();
             $table->foreignId('idclave_alumno')
@@ -32,6 +31,9 @@ return new class extends Migration
             ->onDelete('cascade');
             $table->timestamps();
         });
+
+        DB::unprepared('ALTER TABLE resultados ADD persepcion_riesgo JSON(150)');
+        DB::unprepared('ALTER TABLE resultados ADD consumo_sustancias JSON(150)');
     }
 
     /**
