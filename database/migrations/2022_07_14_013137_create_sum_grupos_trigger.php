@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -13,11 +14,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('password_resets', function (Blueprint $table) {
-            $table->string('email')->index();
-            $table->string('token');
-            $table->timestamp('created_at')->nullable();
-        });
+        DB::unprepared('
+        CREATE TRIGGER grupos_AFTER_INSERT AFTER INSERT ON grupos
+        FOR EACH ROW
+        BEGIN
+                UPDATE encuestas SET total_grupos = (SELECT COUNT(grupos.idgrupos) FROM grupos WHERE grupos.idencuesta = encuestas.idencuesta);
+        END
+        ');
     }
 
     /**
@@ -27,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('password_resets');
+        DB::unprepared('DROP TRIGGER grupos_AFTER_INSERT');
     }
 };

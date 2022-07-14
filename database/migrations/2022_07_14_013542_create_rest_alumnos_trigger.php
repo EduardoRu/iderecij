@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -13,13 +14,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->id('idadministrador');
-            $table->string('name_admin');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->timestamps();
-        });
+        DB::unprepared('
+        CREATE TRIGGER grupos_BEFORE_DELETE BEFORE DELETE ON grupos
+        FOR EACH ROW
+        BEGIN
+            UPDATE encuestas SET total_alumnos_escuela = total_alumnos_escuela - OLD.total_alumnos_grupo WHERE idencuesta = OLD.idencuesta;
+        END
+        ');
     }
 
     /**
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        DB::unprepared('DROP TRIGGER grupos_BEFORE_DELETE');
     }
 };

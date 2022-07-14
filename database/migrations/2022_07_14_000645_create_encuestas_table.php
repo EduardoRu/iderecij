@@ -13,11 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->id('idadministrador');
-            $table->string('name_admin');
-            $table->string('email')->unique();
-            $table->string('password');
+        Schema::create('encuestas', function (Blueprint $table) {
+            $table->id('idencuesta')->autoIncrement();
+            $table->string('nombre_institucion', 200);
+            $table->date('fecha_inicio');
+            $table->date('fecha_final');
+            $table->integer('total_grupos')->nullable();
+            $table->integer('total_alumnos_escuela')->default(0)->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('encuestas');
     }
 };
