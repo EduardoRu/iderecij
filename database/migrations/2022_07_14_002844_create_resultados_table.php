@@ -20,9 +20,11 @@ return new class extends Migration
             $table->integer('sistema_familiar');
             $table->integer('presion_padres');
             $table->integer('disp_sustancias_expect_consumo');
+            $table->json('persepcion_riesgo')->nullable();
             $table->integer('desempeno_escolar');
             $table->integer('violencia');
             $table->integer('riesgo_inicio_incremento_consumo');
+            $table->json('consumo_sustancias')->nullable();
             $table->integer('participacion_acciones_preventivas');
             $table->integer('IVG')->nullable();
             $table->foreignId('idclave_alumno')
@@ -31,9 +33,6 @@ return new class extends Migration
             ->onDelete('cascade');
             $table->timestamps();
         });
-
-        DB::statement('ALTER TABLE resultados ADD persepcion_riesgo JSON');
-        DB::statement('ALTER TABLE resultados ADD consumo_sustancias JSON');
     }
 
     /**
