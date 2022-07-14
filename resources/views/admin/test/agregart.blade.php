@@ -41,10 +41,10 @@
                         </div>
                         <div class="col-md-4" style="padding-top: 2%">
                                 <div class="row">
-                                    <div class="col-md-5">
+                                    <div class="col-md-6">
                                         <input href="" class="btn" onclick="addGroup()" value="Agregar grupo" style="background-color: #36c786; color:white; width: 100%;">
                                     </div>
-                                    <div class="col-md-5">
+                                    <div class="col-md-6">
                                         <input type="button" class="btn" value="Eliminar grupo" style="background-color: #cb1d12; width: 100%; color:white" onclick="delGroup()">
                                     </div>
                                 </div>
