@@ -32,8 +32,8 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        DB::unprepared('ALTER TABLE resultados ADD persepcion_riesgo JSON(150)');
-        DB::unprepared('ALTER TABLE resultados ADD consumo_sustancias JSON(150)');
+        DB::statement('ALTER TABLE resultados ADD persepcion_riesgo JSON');
+        DB::statement('ALTER TABLE resultados ADD consumo_sustancias JSON');
     }
 
     /**
