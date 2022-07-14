@@ -21,18 +21,12 @@ class DatabaseSeeder extends Seeder
             'name_admin' => 'Alfredo Alvarez Haro',
             'email' => 'AAlvarez@gmail.com',
             'password' => bcrypt('CIJAAH1234')
-        ],[
-            'name_admin' => 'Alfredo Alvarez Haro',
-            'email' => 'AAlvarez@gmail.com',
-            'password' => bcrypt('CIJAAH1234')
-        ],[
-            'name_admin' => 'Alfredo Alvarez Haro',
-            'email' => 'AAlvarez@gmail.com',
-            'password' => bcrypt('CIJAAH1234')
-        ],[
-            'name_admin' => 'Alfredo Alvarez Haro',
-            'email' => 'AAlvarez@gmail.com',
-            'password' => bcrypt('CIJAAH1234')
+        ]);
+
+        DB::table('users')->insert([
+            'name_admin' => 'Pedro Rodriguez de la Torre',
+            'email' => 'PRodriguez@gmail.com',
+            'password' => bcrypt('CIJPRT5678')
         ]);
     }
 }

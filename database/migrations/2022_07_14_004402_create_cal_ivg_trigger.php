@@ -14,7 +14,7 @@ return new class extends Migration
      */
     public function up()
     {
-        DB::unprepared(
+        DB::statement(
             '
             CREATE TRIGGER after_insert_sum_avg BEFORE INSERT ON resultados FOR EACH ROW
             BEGIN
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        DB::unprepared('DROP TRIGGER `after_insert_sum_avg`');
+        DB::statement('DROP TRIGGER `after_insert_sum_avg`');
     }
 };
