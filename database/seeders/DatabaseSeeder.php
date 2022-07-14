@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
+        /*
         DB::table('users')->insert([
             'name_admin' => 'Alfredo Alvarez Haro',
             'email' => 'AAlvarez@gmail.com',
@@ -27,6 +28,13 @@ class DatabaseSeeder extends Seeder
             'name_admin' => 'Pedro Rodriguez de la Torre',
             'email' => 'PRodriguez@gmail.com',
             'password' => bcrypt('CIJPRT5678')
+        ]);
+        */
+
+        DB::table('users')->insert([
+            'name_admin' => 'Asistente CIJ',
+            'email' => 'ACIJ@gmail.com',
+            'password' => bcrypt('ACIJ678')
         ]);
     }
 }
