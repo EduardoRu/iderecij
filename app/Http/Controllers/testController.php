@@ -35,6 +35,7 @@ class testController extends Controller
         if($clave['nombre_alumno'] == NULL && $clave['sexo'] == NULL && $clave['estado_clave'] != 'inhabil'){
             $clave->nombre_alumno = $request->input('nombre');
             $clave->sexo = $request->input('sexo');
+            $clave->edad = $request->input('edad');
             $clave->save();
 
             $claveEdit = Clave_alumno::where('idclave_alumno', $clave['idclave_alumno'])->first();

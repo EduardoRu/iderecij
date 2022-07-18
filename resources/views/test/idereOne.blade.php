@@ -20,20 +20,28 @@
                         class="form-control rounded-4"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg"
                         type="text" placeholder="Ingresa tu nombre completo" name="nombre" id="nombre" required>
                     </div>
+                    
                     <div class="" style="padding-top: 2%">
                         <div class="row">
-                            <div class="col-md-9">
+                            
+                            <div class="col-md-3">
+                                <div>
+                                    <label for="edad"><h3>Escribe tu edad</h3></label>
+                                    <br>
+                                    <input class="form-control rounded-4" type="number" id="edad" name="edad" placeholder="Escribe tu edad">
+                                </div>
+                            </div>
+                            <div class="col-md-5">
                                 <h3>Por favor selecciona tu genero</h3>
                                 <p>
                                     <input type="radio" name="sexo" id="sexoUno" value="masculino" required>
-                                    <label for="sexoUno"> Masculino </label>
+                                    <label for="sexoUno" style="font-size: 20px"> Masculino </label>
                     
                                     <input type="radio" name="sexo" id="sexoDos" value="femenino" required>
-                                    <label for="sexoDos"> Femenino </label>
+                                    <label for="sexoDos" style="font-size: 20px"> Femenino </label>
                                 </p>
                             </div>
-                            <div class="col"></div>
-                            <div class="col">
+                            <div class="col" style="padding-left: 15%; padding-top:2%">
                                 <input class="btn btn-lg" type="submit" value="Enviar datos" style="background-color: #ed6f00; color:white">
                             </div>
                         </div>

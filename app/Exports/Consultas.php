@@ -32,6 +32,7 @@ class Consultas implements FromQuery, WithHeadings, WithColumnWidths, ShouldAuto
             return [
                 'Nombre del alumno',
                 'Genero',
+                'Edad',
                 'Grado',
                 'Grupo',
                 'Institución',
@@ -57,6 +58,7 @@ class Consultas implements FromQuery, WithHeadings, WithColumnWidths, ShouldAuto
             return [
                 'Nombre del alumno',
                 'Genero',
+                'Edad',
                 'Grado',
                 'Grupo',
                 'Institución',
@@ -110,6 +112,7 @@ class Consultas implements FromQuery, WithHeadings, WithColumnWidths, ShouldAuto
             return [
                 'C' => 7,
                 'D' => 7,
+                'E' => 7,
                 'F' => 10,
                 'G' => 10,
                 'H' => 10,
@@ -131,6 +134,7 @@ class Consultas implements FromQuery, WithHeadings, WithColumnWidths, ShouldAuto
             return [
                 'C' => 7,
                 'D' => 7,
+                'E' => 7,
                 'F' => 10,
                 'G' => 10,
                 'H' => 10,
@@ -188,6 +192,7 @@ class Consultas implements FromQuery, WithHeadings, WithColumnWidths, ShouldAuto
             ->select(
                 DB::raw('nombre_alumno'),
                 DB::raw('sexo'),
+                DB::raw('edad'),
                 DB::raw('grupos.grado'),
                 DB::raw('grupos.grupo'),
                 DB::raw('encuestas.nombre_institucion'),
@@ -218,6 +223,7 @@ class Consultas implements FromQuery, WithHeadings, WithColumnWidths, ShouldAuto
             ->select(
                 DB::raw('nombre_alumno'),
                 DB::raw('sexo'),
+                DB::raw('edad'),
                 DB::raw('grupos.grado'),
                 DB::raw('grupos.grupo'),
                 DB::raw('encuestas.nombre_institucion'),

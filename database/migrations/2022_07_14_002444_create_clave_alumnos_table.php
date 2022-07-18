@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id('idclave_alumno');
             $table->string('clave', 45)->nullable();
             $table->string('nombre_alumno', 70)->nullable();
+            $table->integer('edad')->nullable();
             $table->string('sexo')->nullable();
             $table->string('estado_clave', 20)->nullable();
             $table->foreignId('idgrupo')

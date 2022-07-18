@@ -166,10 +166,12 @@ if(newDatosDos[0]['Nombre'] && newDatosDos[0]['Sexo']){
       <th>Riesgo de inicio o incremento de consumo</th> \
       <th>Consumo de sustancias</th> \
       <th>Participación en acciones preventivas</th> \
-      <th>Sexo</th> \
+      <th>Escuela</th>\
       <th>Grado</th> \
       <th>Grupo</th> \
-      <th>Escuela</th>';
+      <th>Sexo</th> \
+      <th>Edad</th> \
+     ';
 
     for (let x = 0; x < newDatosDos.length; x++) {
       document.getElementById('resultadoCA').innerHTML += ' \
@@ -185,10 +187,11 @@ if(newDatosDos[0]['Nombre'] && newDatosDos[0]['Sexo']){
         <td>'+newDatosDos[x]['RIIC']+'</td> \
         <td>'+newDatosDos[x]['CS']+'</td> \
         <td>'+newDatosDos[x]['PAP']+'</td> \
-        <td>'+newDatosDos[x]['Sexo']+'<td>\
+        <td>'+newDatosDos[x]['nomEscuela']+'</td> \
         <td>'+newDatosDos[x]['grado']+'</td> \
         <td>'+newDatosDos[x]['grupo']+'</td> \
-        <td>'+newDatosDos[x]['nomEscuela']+'</td> \
+        <td>'+newDatosDos[x]['Sexo']+'<td>\
+        <td>'+newDatosDos[x]['edad']+'<td>\
         <tr>'
     }
 
