@@ -28,7 +28,7 @@
                                 <div>
                                     <label for="edad"><h3>Escribe tu edad</h3></label>
                                     <br>
-                                    <input class="form-control rounded-4" type="number" id="edad" name="edad" placeholder="Escribe tu edad">
+                                    <input class="form-control rounded-4" type="number" id="edad" name="edad" placeholder="Escribe tu edad" required>
                                 </div>
                             </div>
                             <div class="col-md-5">
