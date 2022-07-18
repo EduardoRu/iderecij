@@ -745,7 +745,7 @@
                     <!--C-RIIC-->
                     <div class="row">
                         <div class="col-9">
-                            50.- Has tenido tenido dificultades en la escuela por consumir tabaco, alcohol o drogas
+                            50.- Has tenido dificultades en la escuela por consumir tabaco, alcohol o drogas
                         </div>
                         <div class="col-1">
                             <label for="RIIC1"> Sí </label>
