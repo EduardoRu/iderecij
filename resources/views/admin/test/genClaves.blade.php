@@ -33,6 +33,7 @@
 <body>
     <div id="count">
         {{$x=1;}}
+        {{$grupoc = $claves[0]->grupo}}
     </div>
     <div style="text-align: center">
         <h2>
@@ -48,12 +49,18 @@
             <th>Grupo</th>
         </tr>
         @foreach ($claves as $c)
+        @if ($c->grupo != $grupoc)
+        <div class="page-break"></div>
+            <h1>{{$c->grado}} - {{$grupoc = $c->grupo}}</h1>
+        @else
         <tr>
             <td id="numAlumno">{{$x++;}}</td>
             <td>{{$c->clave}}</td>
             <td>{{$c->grado}}</td>
             <td>{{$c->grupo}}</td>
         </tr>
+        @endif
+        
         @endforeach
     </table>
    </div>

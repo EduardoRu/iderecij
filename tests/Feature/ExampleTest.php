@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
+use App\Models\User;
 
 class ExampleTest extends TestCase
 {
@@ -12,10 +13,23 @@ class ExampleTest extends TestCase
      *
      * @return void
      */
-    public function test_the_application_returns_a_successful_response()
+    public function test_the_application_returns_a_successful_auth()
     {
-        $response = $this->get('/');
+        $user = User::where('email', 'ACIJ@gmail.com')->first();
 
-        $response->assertStatus(200);
+        $response = $this->actingAs($user)->get('/login');
+        $response->assertRedirect('/programarEncuesta');
+    }
+
+    public function test_the_application_returns_a_unsuccessful_auth()
+    {
+
+        $credenciales = [
+            "email" => "ACIJ@gmail.com",
+            "password" => "12345678"
+        ];
+
+        $response = $this->post('/login', $credenciales);
+        $response->assertRedirect("/login");
     }
 }
