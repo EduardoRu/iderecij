@@ -53,8 +53,14 @@
         </tr>
         @foreach ($claves as $c)
         @if ($c->grupo != $grupoc)
-        <div class="page-break"></div>
+            <div class="page-break"></div>
             <h1 style="text-align: center">{{$c->grado}} - {{$grupoc = $c->grupo}}</h1>
+            <tr>
+                <td id="numAlumno">{{$x++;}}</td>
+                <td>{{$c->clave}}</td>
+                <td>{{$c->grado}}</td>
+                <td>{{$c->grupo}}</td>
+            </tr>
         @else
         <tr>
             <td id="numAlumno">{{$x++;}}</td>
@@ -63,7 +69,6 @@
             <td>{{$c->grupo}}</td>
         </tr>
         @endif
-        
         @endforeach
     </table>
    </div>
