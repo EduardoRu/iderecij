@@ -39,6 +39,9 @@
         <h2>
             Claves para los grupos de la institución: {{$claves[0]->nombre_institucion}}
         </h2>
+        <h2>
+            {{$claves[0]->grado}} - {{$claves[0]->grupo}}
+        </h2>
     </div>
    <div id="test">
     <table>
@@ -51,7 +54,7 @@
         @foreach ($claves as $c)
         @if ($c->grupo != $grupoc)
         <div class="page-break"></div>
-            <h1>{{$c->grado}} - {{$grupoc = $c->grupo}}</h1>
+            <h1 style="text-align: center">{{$c->grado}} - {{$grupoc = $c->grupo}}</h1>
         @else
         <tr>
             <td id="numAlumno">{{$x++;}}</td>
