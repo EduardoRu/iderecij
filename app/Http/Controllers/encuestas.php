@@ -114,10 +114,10 @@ class encuestas extends Controller
         $x = 0;
 
 
-        if($encuesta->nombre_institucion != $request->nombre_institucion || $encuesta->fecha_inicio != $request->fi || $encuesta->fecha_inicio != $request->fi){
+        if($encuesta->nombre_institucion != $request->nombre_institucion || $encuesta->fecha_final != $request->ff || $encuesta->fecha_inicio != $request->fi){
             $encuesta->nombre_institucion = $request->nombre_institucion;
             $encuesta->fecha_inicio = $request->fi;
-            $encuesta->fecha_inicio = $request->fi;
+            $encuesta->fecha_final = $request->ff;
             $encuesta->save();
         }
 

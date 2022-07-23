@@ -55,6 +55,9 @@
         @if ($c->grupo != $grupoc)
             <div class="page-break"></div>
             <h1 style="text-align: center">{{$c->grado}} - {{$grupoc = $c->grupo}}</h1>
+            <div id="count">
+                {{$x=1;}}
+            </div>
             <tr>
                 <td id="numAlumno">{{$x++;}}</td>
                 <td>{{$c->clave}}</td>
