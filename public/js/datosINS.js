@@ -62,6 +62,9 @@ function knowCate(datos) {
     }
 
   }
+  if(cateM[0] == null && cateM[1] == null){
+    cateM = [catesNom[0], catesVal[0]]
+  }
   
   document.getElementById('mr').innerHTML = cateM[0] + ': ' + cateM[1];
 }
