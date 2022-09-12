@@ -16,7 +16,7 @@
                     <div class="border-header">
                     </div>
                     <div class="card-body">
-                        <p> Favor de ingresar la clave proporcionada por CIJ para comenzar a contestar la enceusta</p>
+                        <p> Favor de ingresar la clave proporcionada por CIJ para comenzar a contestar la encuesta</p>
                        <center>
                         <form action="{{route('getClave')}}" method="GET">
                             <div style="text-aling: center" class="input-group input-group-lg">
