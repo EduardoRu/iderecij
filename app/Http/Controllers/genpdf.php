@@ -36,6 +36,8 @@ class genpdf extends Controller
             $GU = $grupos[$i]['grupo'];
             $x = 0;
 
+            
+
             $VCA = DB::select('SELECT * FROM clave_alumnos WHERE idgrupo = ?', [$ID]);
             $VCA = json_decode(json_encode($VCA), true);
 
@@ -51,6 +53,7 @@ class genpdf extends Controller
     
     
                     $CA->clave = $clave;
+                    $CA->estado_clave = "habil";
                     $CA->idgrupo = $ID;
     
                     $CA->save();
@@ -69,6 +72,8 @@ class genpdf extends Controller
                     $clave = $clave[0]['CLAVE'];
     
                     $CA->clave = $clave;
+                    $CA->estado_clave = "habil";
+                    $CA->idgrupo = $ID;
     
                     $CA->save();
     
@@ -76,6 +81,10 @@ class genpdf extends Controller
                 }
             }
         }
+
+        //return[$TA < DB::select('SELECT COUNT(idclave_alumno) FROM clave_alumnos WHERE idgrupo = ?', [$ID])];
+
+
 
         $claves = DB::select('SELECT e.nombre_institucion, g.grado, g.grupo, g.total_alumnos_grupo, ca.clave FROM grupos g INNER JOIN clave_alumnos ca ON ca.idgrupo = g.idgrupos INNER JOIN encuestas e ON e.idencuesta = g.idencuesta WHERE g.idencuesta = ?;', [$id]);
         $nomInstitucion = $encuesta->nombre_institucion;
