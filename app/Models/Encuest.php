@@ -24,7 +24,7 @@ class Encuest extends Model
 
     public function grupos(){
 
-        return $this->hasMany(Grupo::class);
+        return $this->hasMany(Grupo::class,'idencuesta','idencuesta');
 
     }
 

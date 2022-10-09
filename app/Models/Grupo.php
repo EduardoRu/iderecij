@@ -14,10 +14,16 @@ class Grupo extends Model
     * @var string
     */
     protected $primaryKey = 'idgrupos';
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'grupos';
 
     public function encuestas(){
 
-        return $this->belongsTo(Encuest::class);
+        return $this->belongsTo(Encuest::class, 'idencuesta', 'idencuesta');
 
     }
 

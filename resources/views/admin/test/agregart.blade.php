@@ -18,8 +18,11 @@
                 <div>
                     <hr>
                     <div class="row">
-                        <div class="col-md-8">
+                        <div class="col-md-4" style="text-align: center">
                             <h4>Periodo de aplicaión del test</h4>
+                        </div>
+                        <div class="col-md-4" style="text-align: center">
+                            <h4>Turno</h4>
                         </div>
                         <div class="col-md-3" style="text-align: center;">
                             <label for="ng">Numero de grupos: </label>
@@ -29,15 +32,25 @@
                     </div>
                     
                     <div class="row">
-                        <div class="col-md-2">
+                        <div class="col-md-2" style="text-align: center">
                             <label for="fi"><h5>Periodo inicial</h5></label>
                             <input class="form-control" type="date" name="fi" id="fi" required>
                         </div> 
-                        <div class="col-md-2">
+                        <div class="col-md-2" style="text-align: center">
                             <label for="fi"><h5>Periodo final</h5></label>
                             <input class="form-control" type="date" name="ff" id="ff" required>
                         </div>
                         <div class="col-md-4">
+                            <div class="row" style="padding-left: 30%">
+                                <div class=" form-check">
+                                    <label class="form-check-label" for="turnM"> <h5>Turno matutino</h5> </label>
+                                    <input type="radio" class="form-check-input" name="turno" value="matutino" id="turnM" required>
+                                </div>
+                                <div class=" form-check">
+                                    <input type="radio" class="form-check-input" name="turno" value="vespertino" id="turnV" required>
+                                    <label class="form-check-label" for="turnV"> <h5>Turno vespertino</h5> </label>
+                                </div>
+                            </div>
                         </div>
                         <div class="col-md-4" style="padding-top: 2%">
                                 <div class="row">

@@ -18,8 +18,11 @@
                 <div>
                     <hr>
                     <div class="row">
-                        <div class="col-md-8">
+                        <div class="col-md-4" style="text-align: center">
                             <h4>Periodo de aplicaión del test</h4>
+                        </div>
+                        <div class="col-md-4" style="text-align: center">
+                            <h4>Turno</h4>
                         </div>
                         <div class="col-md-3" style="text-align: center;">
                             <label for="ng">Numero de grupos: </label>
@@ -39,6 +42,36 @@
                             <input class="form-control" type="date" name="ff" id="ff" value="{{$encuesta->fecha_final}}" required>
                         </div>
                         <div class="col-md-4">
+                            <div class="row" style="padding-left: 30%">
+                            @if ($encuesta->turno === 'matutino')
+                            <div class=" form-check">
+                                <label class="form-check-label" for="turnM"> <h5>Turno matutino</h5> </label>
+                                <input type="radio" class="form-check-input" name="turno" value="matutino" id="turnM" checked="checked" required>
+                            </div>
+                            <div class=" form-check">
+                                <input type="radio" class="form-check-input" name="turno" value="vespertino" id="turnV" required>
+                                <label class="form-check-label" for="turnV"> <h5>Turno vespertino</h5> </label>
+                            </div>
+                            @elseif ($encuesta->turno === 'vespertino')
+                            <div class=" form-check">
+                                <label class="form-check-label" for="turnM"> <h5>Turno matutino</h5> </label>
+                                <input type="radio" class="form-check-input" name="turno" value="matutino" id="turnM" required>
+                            </div>
+                            <div class=" form-check">
+                                <input type="radio" class="form-check-input" name="turno" value="vespertino" id="turnV" checked="checked" required>
+                                <label class="form-check-label" for="turnV"> <h5>Turno vespertino</h5> </label>
+                            </div>
+                            @else
+                            <div class=" form-check">
+                                <label class="form-check-label" for="turnM"> <h5>Turno matutino</h5> </label>
+                                <input type="radio" class="form-check-input" name="turno" value="matutino" id="turnM" required>
+                            </div>
+                            <div class=" form-check">
+                                <input type="radio" class="form-check-input" name="turno" value="vespertino" id="turnV" required>
+                                <label class="form-check-label" for="turnV"> <h5>Turno vespertino</h5> </label>
+                            </div>
+                            @endif  
+                            </div>
                         </div>
                         <div class="col-md-4" style="padding-top: 2%">
                                 <div class="row">

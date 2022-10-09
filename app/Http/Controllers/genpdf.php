@@ -46,8 +46,8 @@ class genpdf extends Controller
                     $CA = new Clave_alumno;
     
                     $clave = DB::select('
-                    SELECT UCASE(CONCAT(LEFT(?,2), RIGHT(?,2),?,?,"'.($x+1).'_",LEFT(?,4))) AS CLAVE FROM encuestas INNER JOIN grupos ON grupos.idencuesta = encuestas.idencuesta WHERE grupos.idgrupos = ? LIMIT 1',
-                    [$encuesta->nombre_institucion, $encuesta->nombre_institucion, $GR, $GU, $encuesta->fecha_final, $ID]);
+                    SELECT UCASE(CONCAT(LEFT(?,2), RIGHT(?,2),?,?,"'.($x+1).'_",LEFT(?,1),LEFT(?,4))) AS CLAVE FROM encuestas INNER JOIN grupos ON grupos.idencuesta = encuestas.idencuesta WHERE grupos.idgrupos = ? LIMIT 1',
+                    [$encuesta->nombre_institucion, $encuesta->nombre_institucion, $GR, $GU,$encuesta->turno, $encuesta->fecha_final, $ID]);
                     $clave = json_decode(json_encode($clave), true);
                     $clave = $clave[0]['CLAVE'];
     
@@ -66,8 +66,8 @@ class genpdf extends Controller
                     $CA = Clave_alumno::find($VCA[$x]['idclave_alumno']);
     
                     $clave = DB::select('
-                    SELECT UCASE(CONCAT(LEFT(?,2), RIGHT(?,2),?,?,"'.($x+1).'_",LEFT(?,4))) AS CLAVE FROM encuestas INNER JOIN grupos ON grupos.idencuesta = encuestas.idencuesta WHERE grupos.idgrupos = ? LIMIT 1',
-                    [$encuesta->nombre_institucion, $encuesta->nombre_institucion, $GR, $GU, $encuesta->fecha_final, $ID]);
+                    SELECT UCASE(CONCAT(LEFT(?,2), RIGHT(?,2),?,?,"'.($x+1).'_",LEFT(?,1),LEFT(?,4))) AS CLAVE FROM encuestas INNER JOIN grupos ON grupos.idencuesta = encuestas.idencuesta WHERE grupos.idgrupos = ? LIMIT 1',
+                    [$encuesta->nombre_institucion, $encuesta->nombre_institucion, $GR, $GU,$encuesta->turno, $encuesta->fecha_final, $ID]);
                     $clave = json_decode(json_encode($clave), true);
                     $clave = $clave[0]['CLAVE'];
     

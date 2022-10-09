@@ -55,14 +55,20 @@ class encuestas extends Controller
         $escuela->nombre_institucion = $request->nombre_institucion;
         $escuela->fecha_inicio = $request->fi;
         $escuela->fecha_final =  $request->ff;
+        $escuela->turno = $request->turno;
 
         $escuela->save();
 
-        $id = Encuest::where('total_alumnos_escuela', 0)->first();
-        
+        $id = Encuest::where('nombre_institucion', $request->nombre_institucion)
+            ->where('fecha_inicio', $request->fi)
+            ->where('fecha_final', $request->ff)->first();
+
+        $idescuela = (int)$id->idencuesta;
+
         while ($x != $TG) {
 
             $grupo = new Grupo;
+            
 
             $gr = (int)$request->input('gr'.$x);
             $gu = strtoupper($request->input('gu'.$x));
@@ -71,7 +77,8 @@ class encuestas extends Controller
             $grupo->grado=$gr;
             $grupo->grupo=$gu;
             $grupo->total_alumnos_grupo=$ta;
-            $grupo->idencuesta=$id->idencuesta;
+            $grupo->idencuesta=$idescuela;
+
 
             $grupo->save();
             
@@ -114,10 +121,11 @@ class encuestas extends Controller
         $x = 0;
 
 
-        if($encuesta->nombre_institucion != $request->nombre_institucion || $encuesta->fecha_final != $request->ff || $encuesta->fecha_inicio != $request->fi){
+        if($encuesta->nombre_institucion != $request->nombre_institucion || $encuesta->fecha_final != $request->ff || $encuesta->fecha_inicio != $request->fi || $encuesta->turno != $request->turno){
             $encuesta->nombre_institucion = $request->nombre_institucion;
             $encuesta->fecha_inicio = $request->fi;
             $encuesta->fecha_final = $request->ff;
+            $encuesta->turno = $request->turno;
             $encuesta->save();
         }
 
