@@ -26,7 +26,6 @@ class genpdf extends Controller
         $encuesta = Encuest::find($id);
         $TG = $encuesta->total_grupos;
 
-
         $grupos = Grupo::where('idencuesta', $encuesta->idencuesta)->get();
 
         for($i = 0; $i < $TG; $i++){
@@ -40,6 +39,10 @@ class genpdf extends Controller
 
             $VCA = DB::select('SELECT * FROM clave_alumnos WHERE idgrupo = ?', [$ID]);
             $VCA = json_decode(json_encode($VCA), true);
+
+            $val = DB::select('SELECT COUNT(idclave_alumno) FROM clave_alumnos WHERE idgrupo = ?', [$ID]);
+            $val = json_decode(json_encode($val), true);
+            $val = $val[0]["COUNT(idclave_alumno)"];
 
             if($VCA == null){
                 while($TA > $x){
@@ -60,31 +63,44 @@ class genpdf extends Controller
     
                     $x++;
                 }
-            }else if($VCA != null){
-                while($TA > $x){
+            }
+            else if($TA != $val && $TA > $val){
+                while ($TA != $val) { 
+                    $CA = new Clave_alumno;
 
-                    $CA = Clave_alumno::find($VCA[$x]['idclave_alumno']);
-    
                     $clave = DB::select('
-                    SELECT UCASE(CONCAT(LEFT(?,2), RIGHT(?,2),?,?,"'.($x+1).'_",LEFT(?,1),LEFT(?,4))) AS CLAVE FROM encuestas INNER JOIN grupos ON grupos.idencuesta = encuestas.idencuesta WHERE grupos.idgrupos = ? LIMIT 1',
+                    SELECT UCASE(CONCAT(LEFT(?,2), RIGHT(?,2),?,?,"'.($val+1).'_",LEFT(?,1),LEFT(?,4))) AS CLAVE FROM encuestas INNER JOIN grupos ON grupos.idencuesta = encuestas.idencuesta WHERE grupos.idgrupos = ? LIMIT 1',
                     [$encuesta->nombre_institucion, $encuesta->nombre_institucion, $GR, $GU,$encuesta->turno, $encuesta->fecha_final, $ID]);
                     $clave = json_decode(json_encode($clave), true);
                     $clave = $clave[0]['CLAVE'];
-    
+        
                     $CA->clave = $clave;
                     $CA->estado_clave = "habil";
                     $CA->idgrupo = $ID;
-    
+            
                     $CA->save();
+                    $val++;
+                }
+            }else if($VCA != null && $TA != $val){
+                while($TA > $x){
+
+                        $CA = Clave_alumno::find($VCA[$x]['idclave_alumno']);
     
+                        $clave = DB::select('
+                        SELECT UCASE(CONCAT(LEFT(?,2), RIGHT(?,2),?,?,"'.($x+1).'_",LEFT(?,1),LEFT(?,4))) AS CLAVE FROM encuestas INNER JOIN grupos ON grupos.idencuesta = encuestas.idencuesta WHERE grupos.idgrupos = ? LIMIT 1',
+                        [$encuesta->nombre_institucion, $encuesta->nombre_institucion, $GR, $GU,$encuesta->turno, $encuesta->fecha_final, $ID]);
+                        $clave = json_decode(json_encode($clave), true);
+                        $clave = $clave[0]['CLAVE'];
+        
+                        $CA->clave = $clave;
+                        $CA->estado_clave = "habil";
+                        $CA->idgrupo = $ID;
+        
+                        $CA->save();
                     $x++;
                 }
             }
         }
-
-        //return[$TA < DB::select('SELECT COUNT(idclave_alumno) FROM clave_alumnos WHERE idgrupo = ?', [$ID])];
-
-
 
         $claves = DB::select('SELECT e.nombre_institucion, g.grado, g.grupo, g.total_alumnos_grupo, ca.clave FROM grupos g INNER JOIN clave_alumnos ca ON ca.idgrupo = g.idgrupos INNER JOIN encuestas e ON e.idencuesta = g.idencuesta WHERE g.idencuesta = ?;', [$id]);
         $nomInstitucion = $encuesta->nombre_institucion;
