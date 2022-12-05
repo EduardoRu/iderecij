@@ -120,6 +120,11 @@ class encuestas extends Controller
         $grupos = json_decode(json_encode($grupos), true);
         $x = 0;
 
+        if($encuesta->fecha_final <= $request->ff){
+
+            DB::update(DB::raw('UPDATE clave_alumnos SET estado_clave = "habil" WHERE idgrupo ON  '));
+        }
+
 
         if($encuesta->nombre_institucion != $request->nombre_institucion || $encuesta->fecha_final != $request->ff || $encuesta->fecha_inicio != $request->fi || $encuesta->turno != $request->turno){
             $encuesta->nombre_institucion = $request->nombre_institucion;
